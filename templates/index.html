@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>AI Poem Generator</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>✨ AI Poem Generator</h1>
+
+    <form method="POST" class="form">
+      <label for="theme">Enter a theme or topic:</label>
+      <input id="theme" name="theme" type="text" placeholder="e.g., nature, love, college life">
+      <button type="submit">Generate Poem</button>
+    </form>
+
+    {% if loading %}
+      <p class="info">{{ loading }}</p>
+    {% endif %}
+
+    {% if poem %}
+      <div class="result">
+        <h2>Your Poem</h2>
+        <pre>{{ poem }}</pre>
+        <a class="btn" href="{{ url_for('index') }}">Generate another</a>
+      </div>
+    {% endif %}
+
+    <footer>
+      <small>Model: GPT-2 (local). First generation may take a few seconds while the model loads.</small>
+    </footer>
+  </div>
+</body>
+</html>
